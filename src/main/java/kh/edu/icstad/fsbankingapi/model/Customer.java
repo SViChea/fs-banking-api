@@ -17,26 +17,26 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @Column(nullable = true)
-//    private String address;
-//
-//    @Column(nullable = true)
-//    private String cityOfProvince;
-//
-//    @Column(nullable = true)
-//    private String companyName;
-//
-//    @Column(nullable = true)
-//    private String country;
-//
-//    @Column(nullable = true)
-//    private LocalDate dob;
+    @Column(nullable = true)
+    private String address;
+
+    @Column(nullable = true)
+    private String cityOfProvince;
+
+    @Column(nullable = true)
+    private String companyName;
+
+    @Column(nullable = true)
+    private String country;
+
+    @Column(nullable = true)
+    private LocalDate dob;
 
     @Column(unique = true)
     private String email;
 
-//    @Column(nullable = true)
-//    private String employmentType;
+    @Column(nullable = true)
+    private String employmentType;
 
     @Column(nullable = true)
     private String fullName ;
@@ -44,31 +44,35 @@ public class Customer {
     @Column(nullable = true)
     private String gender;
 
-//    @Column(nullable = true)
-//    private Boolean isDeleted;
-//
-//    @Column(nullable = true)
-//    private String mainSourceOfIncome;
-//
-//    @Column(nullable = true)
-//    private Double monthlyIncomeRange;
+    @Column(nullable = true)
+    private Boolean isDeleted;
+
+    @Column(nullable = true)
+    private String mainSourceOfIncome;
+
+    @Column(nullable = true)
+    private Double monthlyIncomeRange;
 
     @Column(nullable = true, unique = true)
     private String phoneNumber;
 
-//    @Column(nullable = true)
-//    private String position;
-//
-//    @Column(nullable = true)
-//    private String remark;
-//
-//    @Column(nullable = true)
-//    private String zipCode;
+    @Column(nullable = true)
+    private String position;
 
-//    @OneToMany(mappedBy = "customer")
-//    private List<Account> account;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "customer_segment_id")
-//    private CustomerSegment customerSegment;
+    @Column(nullable = true)
+    private String remark;
+
+    @Column(nullable = true)
+    private String zipCode;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Account> account;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_segment_id")
+    private CustomerSegment customerSegment;
+
+    @OneToOne
+    @JoinColumn(name = "kyc_id")
+    private KYC kyc;
 }

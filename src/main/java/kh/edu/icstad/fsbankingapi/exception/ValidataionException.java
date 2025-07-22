@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice ;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class ValidataionException {
 
-    public ResponseEntity handleValidationException(MethodArgumentNotValidException e){
+    public ResponseEntity<?> handleValidationException(MethodArgumentNotValidException e){
         List<Map<String, String>> errors = new ArrayList<>();
         for(FieldError fieldError : e.getFieldErrors()){
             Map<String, String> error = new HashMap<>();
@@ -24,7 +24,7 @@ public class ValidataionException {
             errors.add(error);
         }
 
-        ErrorResponse errorResponse = new ErrorResponse(
+        ErrorResponse<?> errorResponse = new ErrorResponse<>(
                 e.getMessage(),
                 e.getStatusCode().value(),
                 LocalDateTime.now(),

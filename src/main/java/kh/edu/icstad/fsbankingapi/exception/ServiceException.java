@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 public class ServiceException {
 
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity handleResponseStatusException(ResponseStatusException e) {
-        ErrorResponse errorResponse = new ErrorResponse<>(
+    public ResponseEntity<?> handleResponseStatusException(ResponseStatusException e) {
+        ErrorResponse<?> errorResponse = new ErrorResponse<>(
                 e.getReason(),
                 e.getStatusCode().value(),
                 LocalDateTime.now(),

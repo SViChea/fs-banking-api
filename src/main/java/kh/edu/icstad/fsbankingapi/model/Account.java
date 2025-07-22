@@ -47,4 +47,7 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "account_type_id")
     private AccountType accountType;
+
+    @OneToMany(mappedBy = "receiverId")
+    private List<Transaction> transaction;
 }

@@ -2,6 +2,7 @@ package kh.edu.icstad.fsbankingapi.service.impl;
 
 import kh.edu.icstad.fsbankingapi.dto.customer.CreateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.dto.customer.CustomerResponse;
+import kh.edu.icstad.fsbankingapi.mapper.CustomerMapper;
 import kh.edu.icstad.fsbankingapi.model.Customer;
 import kh.edu.icstad.fsbankingapi.repository.CustomerRepository;
 import kh.edu.icstad.fsbankingapi.service.CustomerService;
@@ -18,21 +19,13 @@ import java.util.List;
 @Service
 public class CustomerServiceImplement implements CustomerService {
     private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
 
     @Override
     public List<CustomerResponse> findAllCustomers() {
-        List<CustomerResponse> customerList = new ArrayList<>();
-        customerRepository.findAll().stream().map(customer -> {
-            return customerList.add(CustomerResponse.builder()
-                            .id(customer.getId())
-                            .email(customer.getEmail())
-                            .fullName(customer.getFullName())
-                            .gender(customer.getGender())
-                            .phoneNumber(customer.getPhoneNumber())
-                    .build());
-        }).toList();
+        List<Customer> customerList = customerRepository.findAll();
 
-        return customerList;
+        return customerMapper.toCustomerResponseList(customerList);
     }
 
     @Override
@@ -53,12 +46,6 @@ public class CustomerServiceImplement implements CustomerService {
 
         customerRepository.save(customer);
 
-        return CustomerResponse.builder()
-                .id(customer.getId())
-                .email(customer.getEmail())
-                .fullName(customer.getFullName())
-                .phoneNumber((customer.getPhoneNumber()))
-                .gender(customer.getGender())
-                .build();
+        return customerMapper.toCustomerResponse(customer);
     }
 }

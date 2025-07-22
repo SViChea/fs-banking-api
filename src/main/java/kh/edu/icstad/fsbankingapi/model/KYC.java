@@ -13,9 +13,7 @@ import lombok.Setter;
 public class KYC {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private Long id;
 
     @Column(nullable = false)
     private Boolean isDeleted;
@@ -25,4 +23,5 @@ public class KYC {
 
     @Column(nullable = false, unique = true)
     private String nationalCardId;
+
 }
