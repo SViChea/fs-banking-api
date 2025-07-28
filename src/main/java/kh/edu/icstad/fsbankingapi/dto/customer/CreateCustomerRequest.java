@@ -1,15 +1,16 @@
 package kh.edu.icstad.fsbankingapi.dto.customer;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CreateCustomerRequest(
         String fullName,
 
-        @NotNull
+        @NotBlank(message = "Email is required")
         String email,
 
-        @NotNull
+        @NotBlank(message = "phone number is required")
         String phoneNumber,
         String gender
 ) {

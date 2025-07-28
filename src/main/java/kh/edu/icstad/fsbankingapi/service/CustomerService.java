@@ -2,6 +2,7 @@ package kh.edu.icstad.fsbankingapi.service;
 
 import kh.edu.icstad.fsbankingapi.dto.customer.CreateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.dto.customer.CustomerResponse;
+import kh.edu.icstad.fsbankingapi.dto.customer.UpdateCustomerRequest;
 
 import java.util.List;
 
@@ -14,11 +15,16 @@ public interface CustomerService {
 
     /**
      * Create Customer
-     * @param fullName
-     * @param email
-     * @param phoneNumber
-     * @param gender
+     * @param createCustomerRequest
      * @return CustomerResponse
      */
     CustomerResponse createCustomer(CreateCustomerRequest createCustomerRequest);
+
+    /**
+     * Update Customer by Email
+     * @param email
+     * @param updateCustomerRequest
+     * @return
+     */
+    CustomerResponse updateCustomerByEmail(String email,  UpdateCustomerRequest updateCustomerRequest);
 }

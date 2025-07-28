@@ -2,6 +2,7 @@ package kh.edu.icstad.fsbankingapi.service.impl;
 
 import kh.edu.icstad.fsbankingapi.dto.customer.CreateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.dto.customer.CustomerResponse;
+import kh.edu.icstad.fsbankingapi.dto.customer.UpdateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.mapper.CustomerMapper;
 import kh.edu.icstad.fsbankingapi.model.Customer;
 import kh.edu.icstad.fsbankingapi.repository.CustomerRepository;
@@ -11,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -43,6 +42,18 @@ public class CustomerServiceImplement implements CustomerService {
         customer.setFullName(createCustomerRequest.fullName());
         customer.setGender(createCustomerRequest.gender());
         customer.setPhoneNumber(createCustomerRequest.phoneNumber());
+
+        customerRepository.save(customer);
+
+        return customerMapper.toCustomerResponse(customer);
+    }
+
+    @Override
+    public CustomerResponse updateCustomerByEmail(String email, UpdateCustomerRequest updateCustomerRequest) {
+        Customer customer = customerRepository.findCustomerByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer Not Found"));
+
+        customerMapper.toCustomerPartial(updateCustomerRequest, customer);
 
         customerRepository.save(customer);
 

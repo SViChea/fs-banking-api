@@ -3,6 +3,7 @@ package kh.edu.icstad.fsbankingapi.controller;
 import jakarta.validation.Valid;
 import kh.edu.icstad.fsbankingapi.dto.customer.CreateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.dto.customer.CustomerResponse;
+import kh.edu.icstad.fsbankingapi.dto.customer.UpdateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.service.impl.CustomerServiceImplement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,5 +27,10 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerResponse createCustomer(@Valid @RequestBody CreateCustomerRequest customerRequest) {
         return customerService.createCustomer(customerRequest);
+    }
+
+    @PatchMapping("/{email}")
+    public CustomerResponse updateCustomer(@PathVariable String email, @RequestBody UpdateCustomerRequest customerRequest) {
+        return customerService.updateCustomerByEmail(email, customerRequest);
     }
 }
