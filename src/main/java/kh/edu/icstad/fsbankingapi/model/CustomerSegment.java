@@ -23,10 +23,10 @@ public class CustomerSegment {
     @Column(nullable = false)
     private Boolean isDeleted;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String segment;
 
-    @OneToMany(mappedBy = "customerSegment")
+    @OneToMany(mappedBy = "customerSegment", fetch =  FetchType.EAGER)
     private List<Customer> customer;
 }
 

@@ -5,6 +5,7 @@ import kh.edu.icstad.fsbankingapi.dto.customer.CustomerResponse;
 import kh.edu.icstad.fsbankingapi.dto.customer.UpdateCustomerRequest;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CustomerService {
     /**
@@ -27,4 +28,6 @@ public interface CustomerService {
      * @return
      */
     CustomerResponse updateCustomerByEmail(String email,  UpdateCustomerRequest updateCustomerRequest);
+
+    void deleteCustomerById(String id);
 }

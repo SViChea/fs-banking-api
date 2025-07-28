@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
     List<Customer> findAll();
@@ -17,4 +18,6 @@ public interface CustomerRepository extends JpaRepository<Customer,Long> {
     Boolean existsByPhoneNumber(String phoneNumber);
 
     Optional<Customer> findCustomerByEmail(String email);
+
+    Optional<Customer> findCustomerById(String id);
 }

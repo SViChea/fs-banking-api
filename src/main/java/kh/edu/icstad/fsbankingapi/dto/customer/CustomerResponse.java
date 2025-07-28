@@ -2,9 +2,11 @@ package kh.edu.icstad.fsbankingapi.dto.customer;
 
 import lombok.Builder;
 
+import java.util.UUID;
+
 @Builder
 public record CustomerResponse(
-        Integer id,
+        UUID id,
         String fullName,
         String email,
         String phoneNumber,

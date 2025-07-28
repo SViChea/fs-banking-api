@@ -14,8 +14,8 @@ import java.util.List;
 @Table(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(nullable = true)
     private String address;
@@ -72,7 +72,7 @@ public class Customer {
     @JoinColumn(name = "customer_segment_id")
     private CustomerSegment customerSegment;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "kyc_id")
     private KYC kyc;
 }

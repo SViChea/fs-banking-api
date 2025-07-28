@@ -1,5 +1,6 @@
 package kh.edu.icstad.fsbankingapi.mapper;
 
+import kh.edu.icstad.fsbankingapi.dto.customer.CreateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.dto.customer.CustomerResponse;
 import kh.edu.icstad.fsbankingapi.dto.customer.UpdateCustomerRequest;
 import kh.edu.icstad.fsbankingapi.model.Customer;
@@ -17,4 +18,6 @@ public interface CustomerMapper{
     CustomerResponse toCustomerResponse(Customer customer);
 
     List<CustomerResponse> toCustomerResponseList(List<Customer> customerList);
+
+    Customer toCustomer (CreateCustomerRequest createCustomerRequest);
 }
