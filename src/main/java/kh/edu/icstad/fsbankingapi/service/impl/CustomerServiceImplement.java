@@ -14,6 +14,7 @@ import kh.edu.icstad.fsbankingapi.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class CustomerServiceImplement implements CustomerService {
 
     @Override
     public List<CustomerResponse> findAllCustomers() {
-        List<Customer> customerList = customerRepository.findByIsDeleted(false);
+        List<Customer> customerList = customerRepository.findCustomersByIsDeleted(false );
 
         return customerMapper.toCustomerResponseList(customerList);
     }
@@ -60,6 +61,7 @@ public class CustomerServiceImplement implements CustomerService {
         Customer customer = customerMapper.toCustomer(createCustomerRequest);
         customer.setCustomerSegment(customerSegment);
         customer.setKyc(kyc);
+        customer.setIsDeleted(false);
 
         customerRepository.save(customer);
 
@@ -83,5 +85,15 @@ public class CustomerServiceImplement implements CustomerService {
         Customer customer = customerRepository.findCustomerById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer Not Found"));
 
         customerRepository.delete(customer);
+    }
+
+    @Transactional
+    @Override
+    public void deleteCustomerByPhone(String phoneNumber) {
+        if(!customerRepository.existsByPhoneNumber(phoneNumber)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Phone Number Not Found");
+        }
+
+        customerRepository.softDelete(phoneNumber);
     }
 }

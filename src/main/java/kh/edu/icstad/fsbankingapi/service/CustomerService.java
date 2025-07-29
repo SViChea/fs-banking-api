@@ -30,4 +30,6 @@ public interface CustomerService {
     CustomerResponse updateCustomerByEmail(String email,  UpdateCustomerRequest updateCustomerRequest);
 
     void deleteCustomerById(String id);
+
+    void deleteCustomerByPhone(String phoneNumber);
 }

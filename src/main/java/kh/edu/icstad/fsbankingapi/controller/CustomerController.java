@@ -23,7 +23,6 @@ public class CustomerController {
         return customerService.findAllCustomers();
     }
 
-
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerResponse createCustomer(@Valid @RequestBody CreateCustomerRequest customerRequest) {
@@ -39,5 +38,11 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable String id) {
         customerService.deleteCustomerById(id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{phone}")
+    public void deleteCustomerByPhone(@PathVariable String phone) {
+        customerService.deleteCustomerByPhone(phone);
     }
 }
