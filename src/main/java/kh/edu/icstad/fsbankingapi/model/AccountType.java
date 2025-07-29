@@ -21,8 +21,8 @@ public class AccountType {
     private Boolean isDeleted;
 
     @Column(nullable = false)
-    private String type;
+    private String accountType;
 
-    @OneToMany(mappedBy = "accountType")
+    @OneToMany(mappedBy = "accountType", fetch = FetchType.EAGER)
     private List<Account> accounts;
 }

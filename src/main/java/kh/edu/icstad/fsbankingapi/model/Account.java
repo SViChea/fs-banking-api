@@ -20,7 +20,8 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String accountCurrent;
+    @Column(nullable = false)
+    private String accountCurrency;
 
     @Column(nullable = false)
     private String accountName;

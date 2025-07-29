@@ -29,7 +29,7 @@ public class CustomerServiceImplement implements CustomerService {
 
     @Override
     public List<CustomerResponse> findAllCustomers() {
-        List<Customer> customerList = customerRepository.findAll();
+        List<Customer> customerList = customerRepository.findByIsDeleted(false);
 
         return customerMapper.toCustomerResponseList(customerList);
     }
